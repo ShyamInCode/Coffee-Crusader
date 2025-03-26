@@ -1,7 +1,7 @@
 #root {
-  max-width: 1280px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
 }
 
@@ -50,8 +50,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
-  overflow: hidden;
+  padding: 0.5rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .background-gradient {
@@ -94,14 +95,14 @@
 }
 
 .card {
-  width: 90vw;
-  height: 90vw;
+  width: 95%;
+  height: auto;
+  min-height: 400px;
   max-width: 500px;
-  max-height: 500px;
   background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 24px;
+  border-radius: 16px;
   box-shadow: 0 8px 32px rgba(146, 64, 14, 0.1);
-  padding: 1.5rem;
+  padding: 1rem;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -109,6 +110,7 @@
   backdrop-filter: blur(8px);
   border: 1px solid rgba(253, 186, 116, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 1rem auto;
 }
 
 .card:hover {
@@ -136,19 +138,20 @@
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   color: #92400e;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   text-shadow: 2px 2px 4px rgba(146, 64, 14, 0.1);
   position: relative;
   animation: fadeInDown 0.8s ease-out;
 }
 
 .subtitle {
-  font-size: 1.125rem;
+  font-size: 1rem;
   color: #b45309;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+  padding: 0 1rem;
   animation: fadeInUp 0.8s ease-out 0.2s backwards;
 }
 
@@ -156,7 +159,7 @@
   background: linear-gradient(135deg, #f59e0b, #ea580c);
   color: white;
   font-weight: bold;
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 1.25rem;
   border-radius: 9999px;
   border: none;
   cursor: pointer;
@@ -164,6 +167,10 @@
   position: relative;
   overflow: hidden;
   animation: fadeInUp 0.8s ease-out 0.4s backwards;
+  width: 90%;
+  max-width: 300px;
+  margin: 0.5rem auto;
+  font-size: 0.9rem;
 }
 
 .button::after {
@@ -250,50 +257,17 @@
 }
 
 .options {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 0.75rem;
-  flex-grow: 1;
-  animation: fadeInUp 0.8s ease-out;
+  width: 100%;
+  padding: 0.5rem;
 }
 
 .option-button {
   width: 100%;
-  text-align: left;
-  padding: 1rem;
-  border-radius: 12px;
-  background: linear-gradient(to right, #fff7ed, #ffedd5);
-  border: 1px solid #fde68a;
-  transition: all 0.3s ease;
-  color: #92400e;
-  position: relative;
-  overflow: hidden;
-}
-
-.option-button::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
-  transition: 0.5s;
-}
-
-.option-button:hover {
-  background: linear-gradient(to right, #fef3c7, #fed7aa);
-  transform: scale(1.02) translateY(-2px);
-  box-shadow: 0 4px 8px rgba(146, 64, 14, 0.15);
-}
-
-.option-button:hover::after {
-  left: 100%;
+  padding: 0.75rem;
+  font-size: 0.9rem;
 }
 
 .badge-image {
@@ -363,41 +337,67 @@
   }
 }
 
-@media (min-width: 768px) {
-  .title {
-    font-size: 2.5rem;
+/* Mobile-first responsive breakpoints */
+@media (min-width: 480px) {
+  #root {
+    padding: 1.5rem;
   }
-  
-  .subtitle {
-    font-size: 1.25rem;
-  }
-  
+
   .card {
-    padding: 2rem;
+    padding: 1.5rem;
+    border-radius: 20px;
   }
-  
-  .badge-image {
-    width: 10rem;
-    height: 10rem;
+
+  .title {
+    font-size: 1.75rem;
   }
-  
+
+  .subtitle {
+    font-size: 1.1rem;
+  }
+
   .button {
-    padding: 1rem 2rem;
-  }
-  
-  .claim-button {
-    font-size: 1.25rem;
-    padding: 1.25rem 2.5rem;
-  }
-  
-  .question {
-    font-size: 1.5rem;
-  }
-  
-  .option-button {
+    padding: 0.75rem 1.5rem;
     font-size: 1rem;
   }
-  
+}
+
+@media (min-width: 768px) {
+  #root {
+    padding: 2rem;
+  }
+
+  .card {
+    width: 90%;
+    padding: 2rem;
+    border-radius: 24px;
+  }
+
+  .title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.125rem;
+  }
+
+  .button {
+    padding: 0.75rem 2rem;
+    font-size: 1.1rem;
+  }
+
+  .options {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .option-button {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
   .steam {
     top: -30px;
     height: 30px;
@@ -406,5 +406,28 @@
   .steam span {
     width: 10px;
     height: 30px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .card {
+    width: 80%;
+    max-width: 600px;
+  }
+
+  .options {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+}
+
+/* Add touch-friendly tap targets for mobile */
+@media (hover: none) and (pointer: coarse) {
+  .button,
+  .option-button,
+  .status-pill {
+    min-height: 44px;
+    min-width: 44px;
   }
 }
